@@ -126,4 +126,82 @@ class Model
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->amount_of_songs;
     }
+    public function getAllLeads(){
+    	
+    }
+    public function addLead(){
+    	
+    }
+    public function deleteLead($lead_id){
+    	
+    }
+    public function getLead($lead_id){
+    	
+    }
+    public function updateLead(){
+    	
+    }
+    public function getAmountOfLeads(){
+    	
+    }
+//     ---------------------------------------------------------------
+    public function getAllUser(){
+    	 
+    }
+    public function addUser(){
+    	 
+    }
+    public function deleteUser($user_id){
+    	 
+    }
+    public function getUser($user_id){
+    	 
+    }
+    public function updateUser(){
+    	 
+    }
+    public function getAmountOfUsers(){
+    	 
+    }
+    
+    //     ---------------------------------------------------------------
+    public function getAllFollowUps(){
+    
+    }
+    public function addFolllowUp(){
+    
+    }
+    public function deleteFollowUp($followUp_id){
+    
+    }
+    public function getFollowUp($user_id){
+    
+    }
+    public function updateFollowUp(){
+    
+    }
+    public function getAmountOfFollowUpss(){
+    
+    }
+    
+    //     ---------------------------------------------------------------
+    public function getAllStudentss(){
+    
+    }
+    public function addStudent(){
+    
+    }
+    public function deleteStudent($student_id){
+    
+    }
+    public function getStudent($student_id){
+    
+    }
+    public function updateStudent(){
+    
+    }
+    public function getAmountOfStudent(){
+    
+    }
+    
 }
