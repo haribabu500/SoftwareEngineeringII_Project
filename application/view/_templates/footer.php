@@ -1,13 +1,17 @@
-    <!-- jQuery, loaded in the recommended protocol-less way -->
-    <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ </div>
+    <!-- /#wrapper -->
 
-    <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
-    <script>
-        var url = "<?php echo URL; ?>";
-    </script>
+    <!-- jQuery -->
+    <script src="<?php echo URL; ?>js/jquery.js"></script>
 
-    <!-- our JavaScript -->
-    <script src="<?php echo URL; ?>js/application.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo URL; ?>js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="<?php echo URL; ?>js/plugins/morris/raphael.min.js"></script>
+    <script src="<?php echo URL; ?>js/plugins/morris/morris.min.js"></script>
+    <script src="<?php echo URL; ?>js/plugins/morris/morris-data.js"></script>
+
 </body>
+
 </html>
