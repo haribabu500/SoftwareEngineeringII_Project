@@ -21,7 +21,7 @@ CREATE TABLE `user` (
   user_firstname  varchar(20) NOT NULL, 
   user_middlename varchar(20) NOT NULL, 
   user_lastname   varchar(20) NOT NULL, 
-  email           varchar(10) NOT NULL, 
+  email           varchar(20) NOT NULL, 
   contact         varchar(20) NOT NULL, 
   address         varchar(20) NOT NULL, 
   role            varchar(20) NOT NULL, 

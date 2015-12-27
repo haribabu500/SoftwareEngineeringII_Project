@@ -13,7 +13,9 @@
     <script src="<?php echo URL; ?>js/plugins/morris/morris-data.js"></script>
 <!--     Chart.js Javascript -->
     <script src="<?php echo URL; ?>js/Chart.js"></script>
-
+	
+	<script src="<?php echo URL; ?>js/validation/additional-methods.min.js"></script>
+    <script src="<?php echo URL; ?>js/validation/jquery.validate.min.js"></script>
 </body>
 
 </html>

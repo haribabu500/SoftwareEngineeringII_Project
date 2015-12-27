@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>ALMS Administrator</title>
-
+	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+	
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,6 +23,7 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo URL; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,7 +77,11 @@
                         <a href="<?php echo URL; ?>user/adminDashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="<?php echo URL; ?>user/index"><i class="fa fa-fw fa-users"></i> Counsellors</a>
+                    	<a href="javascript:;" data-toggle="collapse" data-target="#counsellors"><i class="fa fa-fw fa-users"></i> Counsellors <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="counsellors" class="collapse">
+                        	<li><a href="<?php echo URL; ?>user/addCounsellor">Add Counsellor</a>
+                        	<li><a href="<?php echo URL; ?>user/viewCounsellors">View Counsellors</a>
+                        </ul>
                     </li>
                     </li>
                     <li>

@@ -146,22 +146,83 @@ class Model
     }
 //     ---------------------------------------------------------------
     public function getAllUser(){
-    	 
+    	$sql = "SELECT * FROM user";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    		return $query->fetchAll();
     }
-    public function addUser(){
-    	 
+    
+    public function addUser($user_firstname,$user_midddlename,$user_lastname,$email,$contact,$address,$role,$username,$password){
+    	$sql="INSERT INTO `user`(`user_firstname`, `user_middlename`, `user_lastname`, `email`, `contact`, `address`, `role`, `username`, `password`) 
+    			VALUES (:user_firstname,:user_middlename,:user_lastname,:email,:contact,:address,:role,:username,:password)";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':user_firstname' => $user_firstname,
+    			':user_middlename' => $user_midddlename, 
+    			':user_lastname' => $user_lastname, 
+    			':email' => $email,
+    			':contact' => $contact,
+    			':address' => $address,
+    			':role' => $role,
+    			':username' => $username,
+    			':password' => $password);
+    	$query->execute($parameters);
+    	echo "hari";
+    	
     }
     public function deleteUser($user_id){
-    	 
+    	$sql = "DELETE FROM user WHERE user_id = :user_id";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':user_id' => $user_id);
+    	$query->execute($parameters);
     }
     public function getUser($user_id){
-    	 
+    	$sql = "SELECT * FROM user WHERE user_id = :user_id LIMIT 1";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':user_id' => $user_id);
+    	
+    	// useful for debugging: you can see the SQL behind above construction by using:
+//     	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+    	
+    	$query->execute($parameters);
+    	
+    	// fetch() is the PDO method that get exactly one result
+    	return $query->fetch();
     }
-    public function updateUser(){
-    	 
+    public function updateUser($user_id,$user_firstname,$user_midddlename,$user_lastname,$email,$contact,$address,$role,$username,$password){
+    	$sql = "UPDATE user SET user_firstname = :user_firstname, 
+    			user_middlename = :user_middlename, 
+    			user_lastname = :user_lastname,
+    			email=:email,
+    			contact=:contact,
+    			address=:address,
+    			role=:role,
+    			username=:username,
+    			password=:password
+    			 WHERE user_id = :user_id";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':user_firstname' => $user_firstname,
+    			 ':user_middlename' => $user_midddlename,
+    			 ':user_lastname' => $user_lastname,
+    			 ':email' => $email,
+    			 ':contact' => $contact,
+    			 ':address' => $address,
+    			 ':role' => $role,
+    			 ':username' => $username,
+    			 ':password' => $password,
+    			 ':user_id' => $user_id);
+    	
+    	// useful for debugging: you can see the SQL behind above construction by using:
+//     	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+    	
+    	$query->execute($parameters);
     }
     public function getAmountOfUsers(){
-    	 
+    	$sql = "SELECT COUNT(user_id) AS amount_of_users FROM user";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	
+    	// fetch() is the PDO method that get exactly one result
+    	return $query->fetch()->amount_of_users;
     }
     
     //     ---------------------------------------------------------------
