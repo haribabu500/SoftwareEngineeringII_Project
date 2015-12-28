@@ -58,7 +58,7 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
-		      <button id="submit" name="submit_addCounsellor" type="submit" class="btn btn-primary">Add Counsellor</button>
+		      <button id="submit" name="submit_addCounsellor" type="submit" class="btn btn-primary">Update Counsellor</button>
 		    </div>
 		  </div>
 		</form>

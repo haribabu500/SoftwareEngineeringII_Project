@@ -127,22 +127,84 @@ class Model
         return $query->fetch()->amount_of_songs;
     }
     public function getAllLeads(){
+    	$sql = "SELECT * FROM lead";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
     	
     }
-    public function addLead(){
+    public function addLead($user_id,$lead_firstname,$lead_midddlename,$lead_lastname,$email,$contact,$address,$qualification,$stream,$status,$nextfollowupDate){
+    	$sql="INSERT INTO `lead`(`user_id`, `lead_firstname`, `lead_middlename`, `lead_lastname`, `email`, `contact`, `address`, `qualification`, `stream`, `status`, `nextfollowupDate`) 
+    			VALUES (:user_id,:lead_firstname,:lead_middlename,:lead_lastname,:email,:contact,:address,:qualification,:stream,:status,:nextfollowupDate)";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':user_id'=>$user_id,
+    			':lead_firstname' => $lead_firstname,
+    			':lead_middlename' => $lead_midddlename,
+    			':lead_lastname' => $lead_lastname,
+    			':email' => $email,
+    			':contact' => $contact,
+    			':address' => $address,
+    			':qualification' => $qualification,
+    			':stream' => $stream,
+    			':status' => $status,
+    			':nextfollowupDate'=>$nextfollowupDate);
+//     	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
     	
+    	$query->execute($parameters);
     }
     public function deleteLead($lead_id){
-    	
+    	$sql = "DELETE FROM lead WHERE lead_id = :lead_id";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':lead_id' => $lead_id_id);
+    	$query->execute($parameters);
     }
     public function getLead($lead_id){
+    	$sql = "SELECT * FROM lead WHERE lead_id = :lead_id LIMIT 1";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':lead_id' => $lead_id);
+    	$query->execute($parameters);
     	
+    	return $query->fetch();
     }
-    public function updateLead(){
-    	
+    public function updateLead($lead_id,$user_id,$lead_firstname,$lead_midddlename,$lead_lastname,$email,$contact,$address,$qualification,$stream,$status,$nextfollowupDate){
+    	$sql = "UPDATE lead SET user_id=:user_id, 
+    			lead_firstname = :lead_firstname,
+    			lead_middlename = :lead_middlename,
+    			lead_lastname = :lead_lastname,
+    			email=:email,
+    			contact=:contact,
+    			address=:address,
+    			qualification=:qualification,
+    			stream=:stream,
+    			status=:status,
+    			nextfollowupDate=:nextfollowupDate
+    			 WHERE lead_id = :lead_id";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':user_id'=>$user_id,
+    			':lead_firstname' => $lead_firstname,
+    			':lead_middlename' => $lead_midddlename,
+    			':lead_lastname' => $lead_lastname,
+    			':email' => $email,
+    			':contact' => $contact,
+    			':address' => $address,
+    			':qualification' => $qualification,
+    			':stream' => $stream,
+    			':status' => $status,
+    			':nextfollowupDate' => $nextfollowupDate,
+    			':lead_id' => $lead_id);
+    	 
+    	// useful for debugging: you can see the SQL behind above construction by using:
+//     	    	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+    	 
+    	$query->execute($parameters);
     }
     public function getAmountOfLeads(){
-    	
+    	$sql = "SELECT COUNT(lead_id) AS amount_of_leads FROM lead";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	 
+    	// fetch() is the PDO method that get exactly one result
+    	return $query->fetch()->amount_of_leads;
     }
 //     ---------------------------------------------------------------
     public function getAllUser(){
@@ -166,7 +228,6 @@ class Model
     			':username' => $username,
     			':password' => $password);
     	$query->execute($parameters);
-    	echo "hari";
     	
     }
     public function deleteUser($user_id){

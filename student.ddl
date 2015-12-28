@@ -37,7 +37,7 @@ CREATE TABLE lead (
   email            int(10) NOT NULL, 
   contact          varchar(20) NOT NULL, 
   address          varchar(20) NOT NULL, 
-  qulaification    varchar(20) NOT NULL, 
+  qualification    varchar(20) NOT NULL, 
   stream           varchar(20) NOT NULL, 
   status           varchar(20) NOT NULL, 
   nextfollowupDate date NOT NULL, 

@@ -84,3 +84,16 @@ body {
 .error{
 	color: #a94442;
 }
+.lead-active{
+	background:none;
+	color:#337ab7;
+}
+.lead-expired{
+	color:#8a6d3b;
+}
+.lead-dismissed{
+	color:#a94442;
+}
+.lead-postponed{
+	color:#3c763d;
+}

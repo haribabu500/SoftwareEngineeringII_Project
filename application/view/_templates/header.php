@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>SB Admin - Bootstrap Admin Template</title>
-
+	
+	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
 
@@ -77,21 +78,21 @@
                         <a href="<?php echo URL; ?>user/counsellorsDashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="<?php echo URL; ?>user/counsellorsDashboard"><i class="fa fa-fw fa-users"></i> Leads</a>
-                    </li>
-                    <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Leads <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="<?php echo URL; ?>user/counsellorsDashboard">Add Lead</a>
+                                <a href="<?php echo URL; ?>leads/addLead">Add Lead</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>user/counsellorsDashboard">View Leads</a>
+                                <a href="<?php echo URL; ?>leads/viewLeads">View Leads</a>
                             </li>
                             <li>
                                 <a href="<?php echo URL; ?>user/counsellorsDashboard">Admission</a>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="<?php echo URL; ?>user/counsellorsDashboard"><i class="fa fa-fw fa-phone"></i> Follow Ups</a>
                     </li>
                 </ul>
             </div>
