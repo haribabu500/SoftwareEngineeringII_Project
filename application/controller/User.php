@@ -8,6 +8,12 @@ class User extends Controller
 	}
 	
 	public function counsellorsDashboard(){
+		$leads = $this->model->getUsersFollowUpsLeads($_SESSION['user']->user_id);
+		$followUps_to_make=sizeOf($leads);
+		$myleads=$this->model->getUsersLeads($_SESSION['user']->user_id);
+		$myleads_count=sizeOf($myleads);
+		$total_leads=$this->model->getAllLeads();
+		$total_count=sizeOf($total_leads);
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/user/counsellorsDashboard.php';
 		require APP . 'view/_templates/footer.php';

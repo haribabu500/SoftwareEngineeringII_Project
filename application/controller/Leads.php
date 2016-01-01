@@ -14,7 +14,7 @@ class Leads extends Controller
 	}
 	public function  addLeadAction(){
 		if (isset($_POST["submit_addLead"])) {
-			$this->model->addLead($_POST["user_id"],$_POST["lead_firstname"], $_POST["lead_middlename"], $_POST["lead_lastname"],$_POST["email"],$_POST["contact"],$_POST["address"],$_POST["qualification"],$_POST["stream"],$_POST["status"],$_POST["nextfollowupDate"] );
+			$this->model->addLead($_POST["user_id"],$_POST["lead_firstname"], $_POST["lead_middlename"], $_POST["lead_lastname"],$_POST["email"],$_POST["contact"],$_POST["address"],$_POST["qualification"],$_POST["stream"],$_POST["status"],$_POST["nextfollowupDate"],$_POST["semester"] );
 		}
 		header('location: ' . URL . 'leads/addLead');
 	}
@@ -22,9 +22,17 @@ class Leads extends Controller
 		
 	}
 	
-	public function viewLeads(){
+	public function viewAllLeads(){
 		$leads = $this->model->getAllLeads();
 		$num_of_leads=$this->model->getAmountOfLeads();
+	
+		require APP . 'view/_templates/header.php';
+		require APP . 'view/leads/viewLeads.php';
+		require APP . 'view/_templates/footer.php';
+	}
+	public function viewCounsellorsLeads(){
+		$leads = $this->model->getUsersLeads($_SESSION["user"]->user_id);
+		$num_of_leads=sizeof($leads);
 	
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/leads/viewLeads.php';
@@ -44,9 +52,9 @@ class Leads extends Controller
 	}
 	public function editLeadAction(){
 		if (isset($_POST["submit_editLead"])) {
-			$this->model->updateLead($_POST["lead_id"],$_POST["user_id"],$_POST["lead_firstname"],$_POST["lead_middlename"],$_POST["lead_lastname"],$_POST["email"],$_POST["contact"],$_POST["address"],$_POST["qualification"],$_POST["stream"],$_POST["status"],$_POST["nextfollowupDate"]);
+			$this->model->updateLead($_POST["lead_id"],$_POST["user_id"],$_POST["lead_firstname"],$_POST["lead_middlename"],$_POST["lead_lastname"],$_POST["email"],$_POST["contact"],$_POST["address"],$_POST["qualification"],$_POST["stream"],$_POST["status"],$_POST["nextfollowupDate"],$_POST["semester"]);
 		}
-		header('location: ' . URL . 'leads/viewLeads');
+		header('location: ' . URL . 'leads/viewCounsellorsLeads');
 	}
 	
 }

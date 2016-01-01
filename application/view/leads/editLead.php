@@ -65,6 +65,13 @@
 		  </div>
 		  
 		  <div class="form-group">
+		    <label for="semester" class="col-sm-2 control-label">Semester</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="semester" name="semester" placeholder="Semester" required="required" value="<?php echo htmlspecialchars($lead->semester, ENT_QUOTES, 'UTF-8'); ?>">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
 		    <label for="nextfollowupDate" class="col-sm-2 control-label">Follow Up date</label>
 		    <div class="col-sm-10">
 		      <input type="date" class="form-control" id="nextfollowupDate" name="nextfollowupDate" placeholder="Follow Up date" required="required" value="<?php echo htmlspecialchars($lead->nextfollowupDate, ENT_QUOTES, 'UTF-8'); ?>">

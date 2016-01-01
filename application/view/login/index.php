@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -9,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ALMS Administrator</title>
+    <title>ALMS</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">

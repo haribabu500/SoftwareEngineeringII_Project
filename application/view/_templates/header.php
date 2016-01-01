@@ -1,3 +1,8 @@
+<?php 
+	if(!isset($_SESSION["user"])){
+		header('location: ' . URL . '');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +28,9 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo URL; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <link href="<?php echo URL; ?>font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<script src="<?php echo URL; ?>js/jquery.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -46,14 +53,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo URL; ?>user/counsellorsDashboard">Counsellors Name</a>
+                <a class="navbar-brand" href="<?php echo URL; ?>user/counsellorsDashboard"><?php echo $_SESSION["user"]->user_firstname." ".$_SESSION["user"]->user_middlename.$_SESSION["user"]->user_lastname?></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Counsellors Name<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]->user_firstname." ".$_SESSION["user"]->user_middlename.$_SESSION["user"]->user_lastname?><b class="caret"></b></a>
                     <ul class="dropdown-menu" style="min-width:180px;">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -84,15 +91,16 @@
                                 <a href="<?php echo URL; ?>leads/addLead">Add Lead</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>leads/viewLeads">View Leads</a>
+                                <a href="<?php echo URL; ?>leads/viewCounsellorsLeads">View My Leads</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>user/counsellorsDashboard">Admission</a>
+                                <a href="<?php echo URL; ?>leads/viewAllLeads">View All Leads</a>
                             </li>
+                            
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo URL; ?>user/counsellorsDashboard"><i class="fa fa-fw fa-phone"></i> Follow Ups</a>
+                        <a href="<?php echo URL; ?>followUp/counsellorsFollowUp"><i class="fa fa-fw fa-phone"></i> Follow Ups</a>
                     </li>
                 </ul>
             </div>

@@ -7,18 +7,8 @@
 		<form id="form_addLead" class="form-horizontal" method="post" action="<?php echo URL; ?>leads/addLeadAction">
 			<legend>Add Lead page</legend>
 			
-			<div class="form-group">
-		    <label for="user_firstname" class="col-sm-2 control-label" >Counsellor</label>
-		    <div class="col-sm-10">
-		    	<select name="user_id" class="form-control">
-					<?php foreach ($counsellors as $counsellor) { ?>
-						<option value="<?php echo $counsellor->user_id ?>">
-							<?php echo $counsellor->user_firstname." ".$counsellor->user_middlename." ".$counsellor->user_lastname?>
-						</option>
-					<?php }?>
-				</select>
-		    </div>
-		  </div>
+			<input type="hidden" name="user_id" value="<?php echo $_SESSION["user"]->user_id?>">		    
+		    
 		  <div class="form-group">
 		    <label for="user_firstname" class="col-sm-2 control-label" >First Name</label>
 		    <div class="col-sm-10">
@@ -70,7 +60,12 @@
 		      <input type="text" class="form-control" id="stream" name="stream" placeholder="Stream" required="required">
 		    </div>
 		  </div>
-		  
+		  <div class="form-group">
+		    <label for="semester" class="col-sm-2 control-label">Semester</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="semester" name="semester" placeholder="Semester" required="required">
+		    </div>
+		  </div>
 		  <div class="form-group">
 		    <label for="nextfollowupDate" class="col-sm-2 control-label">Follow Up date</label>
 		    <div class="col-sm-10">

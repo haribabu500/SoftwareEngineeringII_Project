@@ -12,19 +12,26 @@ class Login extends Controller
 	public function checkLogin(){
 		$username=$_POST['username'];
 		$password=$_POST['password'];
-		if($username=="admin" && $password=="admin"){
+		$user=$this->model->getLoggedInUser($username,$password);
+// 		echo $user->role;
+		if($user->role=="admin"){
+			$_SESSION["user"]=$user;
+			header('location: '.URL.'user/adminDashboard');
 			require APP . 'view/_templates/admin_header.php';
 			require APP . 'view/user/adminDashboard.php';
 			require APP . 'view/_templates/admin_footer.php';
 		}
-		if($username=="counsellor" && $password=="counsellor"){
-			require APP . 'view/_templates/header.php';
-			require APP . 'view/user/counsellorsDashboard.php';
-			require APP . 'view/_templates/footer.php';
+		if($user->role=="counsellor"){
+			$_SESSION["user"]=$user;
+			header('location: '.URL.'user/counsellorsDashboard');
+		}
+		else{
+			header('location: ' . URL . '');
 		}
 	}
 // 	this method loggs out a  user and redirects user to login page
 	public function logout(){
+		session_destroy();
 		require APP . 'view/login/index.php';
 	}
 }

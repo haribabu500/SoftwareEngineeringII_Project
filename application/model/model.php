@@ -133,9 +133,26 @@ class Model
     	return $query->fetchAll();
     	
     }
-    public function addLead($user_id,$lead_firstname,$lead_midddlename,$lead_lastname,$email,$contact,$address,$qualification,$stream,$status,$nextfollowupDate){
-    	$sql="INSERT INTO `lead`(`user_id`, `lead_firstname`, `lead_middlename`, `lead_lastname`, `email`, `contact`, `address`, `qualification`, `stream`, `status`, `nextfollowupDate`) 
-    			VALUES (:user_id,:lead_firstname,:lead_middlename,:lead_lastname,:email,:contact,:address,:qualification,:stream,:status,:nextfollowupDate)";
+    public function getUsersLeads($user_id){
+    	$sql = "SELECT * FROM lead where user_id=:user_id";
+    	$query = $this->db->prepare($sql);
+    	$parameters=array('user_id'=>$user_id);
+    	$query->execute($parameters);
+    	return $query->fetchAll();
+    	 
+    }
+    public function getUsersFollowUpsLeads($user_id){
+    	$sql = "SELECT * FROM lead where user_id=:user_id and nextfollowupDate<=now() order by nextfollowupDate";
+    	$query = $this->db->prepare($sql);
+    	$parameters=array('user_id'=>$user_id);
+    	$query->execute($parameters);
+    	return $query->fetchAll();
+    
+    }
+    
+    public function addLead($user_id,$lead_firstname,$lead_midddlename,$lead_lastname,$email,$contact,$address,$qualification,$stream,$status,$nextfollowupDate,$semester){
+    	$sql="INSERT INTO `lead`(`user_id`, `lead_firstname`, `lead_middlename`, `lead_lastname`, `email`, `contact`, `address`, `qualification`, `stream`, `status`, `nextfollowupDate`,`semester`,`createdDate`) 
+    			VALUES (:user_id,:lead_firstname,:lead_middlename,:lead_lastname,:email,:contact,:address,:qualification,:stream,:status,:nextfollowupDate,:semester,:createdDate)";
     	$query = $this->db->prepare($sql);
     	$parameters = array(':user_id'=>$user_id,
     			':lead_firstname' => $lead_firstname,
@@ -147,7 +164,10 @@ class Model
     			':qualification' => $qualification,
     			':stream' => $stream,
     			':status' => $status,
-    			':nextfollowupDate'=>$nextfollowupDate);
+    			':nextfollowupDate'=>$nextfollowupDate,
+    			':semester'=>$semester,
+    			':createdDate'=>date("Y-m-d")
+    	);
 //     	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
     	
     	$query->execute($parameters);
@@ -166,7 +186,7 @@ class Model
     	
     	return $query->fetch();
     }
-    public function updateLead($lead_id,$user_id,$lead_firstname,$lead_midddlename,$lead_lastname,$email,$contact,$address,$qualification,$stream,$status,$nextfollowupDate){
+    public function updateLead($lead_id,$user_id,$lead_firstname,$lead_midddlename,$lead_lastname,$email,$contact,$address,$qualification,$stream,$status,$nextfollowupDate,$semester){
     	$sql = "UPDATE lead SET user_id=:user_id, 
     			lead_firstname = :lead_firstname,
     			lead_middlename = :lead_middlename,
@@ -177,7 +197,8 @@ class Model
     			qualification=:qualification,
     			stream=:stream,
     			status=:status,
-    			nextfollowupDate=:nextfollowupDate
+    			nextfollowupDate=:nextfollowupDate,
+    			semester=:semester
     			 WHERE lead_id = :lead_id";
     	$query = $this->db->prepare($sql);
     	$parameters = array(':user_id'=>$user_id,
@@ -191,7 +212,9 @@ class Model
     			':stream' => $stream,
     			':status' => $status,
     			':nextfollowupDate' => $nextfollowupDate,
-    			':lead_id' => $lead_id);
+    			':lead_id' => $lead_id,
+    			':semester'=>$semester
+    	);
     	 
     	// useful for debugging: you can see the SQL behind above construction by using:
 //     	    	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
@@ -208,7 +231,7 @@ class Model
     }
 //     ---------------------------------------------------------------
     public function getAllUser(){
-    	$sql = "SELECT * FROM user";
+    	$sql = "SELECT * FROM user where role='counsellor'";
     	$query = $this->db->prepare($sql);
     	$query->execute();
     		return $query->fetchAll();
@@ -285,19 +308,63 @@ class Model
     	// fetch() is the PDO method that get exactly one result
     	return $query->fetch()->amount_of_users;
     }
-    
+    public function getLoggedInUser($username,$password){
+    	$sql = "SELECT * FROM user WHERE username = :username and password=:password";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':username' => $username,':password'=>$password);
+    	 
+    	// useful for debugging: you can see the SQL behind above construction by using:
+//     	    	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+    	 
+    	$query->execute($parameters);
+    	 
+    	// fetch() is the PDO method that get exactly one result
+    	return $query->fetch();
+    }
     //     ---------------------------------------------------------------
     public function getAllFollowUps(){
     
     }
-    public function addFolllowUp(){
-    
+    public function addFolllowUp($user_id,$lead_id,$nextfollowupDate,$status,$feedback){
+    	$sql = "UPDATE lead SET 
+    			status=:status,
+    			nextfollowupDate=:nextfollowupDate
+    			 WHERE lead_id=:lead_id";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(
+    			':lead_id'=>$lead_id,
+    			':status' => $status,
+    			':nextfollowupDate' => $nextfollowupDate,
+    	);
+    	
+    	// useful for debugging: you can see the SQL behind above construction by using:
+//     	    	    	echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+    	
+    	$query->execute($parameters);
+    	
+    	$sql="INSERT INTO `followUp`(`lead_id`, `followUp_date`, `feedback`)
+    			VALUES (:lead_id,now(),:feedback)";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(
+    			':lead_id' => $lead_id,
+    			':feedback' => $feedback
+    	);
+    	$query->execute($parameters);
+    	
     }
     public function deleteFollowUp($followUp_id){
     
     }
     public function getFollowUp($user_id){
-    
+    	$sql = "SELECT f.followUp_id,l.lead_id,concat(l.lead_firstname,' ',l.lead_middlename,' ',l.lead_lastname) as  name,l.status,f.feedback FROM followUp f,lead l 
+    			where l.user_id=:user_id 
+    			and f.lead_id=l.lead_id";
+    	$query = $this->db->prepare($sql);
+    	$parameter=array(
+    			':user_id'=>$user_id
+    	);
+    	$query->execute($parameter);
+    	return $query->fetchAll();
     }
     public function updateFollowUp(){
     
@@ -324,6 +391,17 @@ class Model
     }
     public function getAmountOfStudent(){
     
+    }
+    
+    
+    public function getDailyLead(){
+    	$user_id=$_SESSION['user']->user_id;
+    	$sql="SELECT `createdDate`,count(lead_id) as leads FROM `lead` where user_id=:user_id group by createdDate order by createdDate desc  LIMIT 7 ";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':user_id' => $user_id);
+    	$query->execute($parameters);
+    	
+    	return $query->fetchAll();
     }
     
 }
