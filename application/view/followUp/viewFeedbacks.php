@@ -8,7 +8,6 @@
                 <th>Name</th>
                 <th>Status</th>
                 <th>Feedback</th>
-                <th>Delete</th>
                 <th>Edit</th>
             </tr>
             </thead>
@@ -21,8 +20,7 @@
                     <td class="lead-<?php echo $followUp->status;?>"><?php if (isset($followUp->status)) echo htmlspecialchars($followUp->status, ENT_QUOTES, 'UTF-8'); ?></td>
                     <td><?php if (isset($followUp->feedback)) echo htmlspecialchars($followUp->feedback, ENT_QUOTES, 'UTF-8'); ?></td>
                     
-                    <td><a href="<?php echo URL . 'leads/editLead/' . htmlspecialchars($followUp->lead_id, ENT_QUOTES, 'UTF-8'); ?>">edit</a></td>
-                    <td><a href="<?php echo URL . 'leads/editLead/' . htmlspecialchars($followUp->lead_id, ENT_QUOTES, 'UTF-8'); ?>">edit</a></td>
+                    <td><a href="<?php echo URL . 'followUp/editFollowUp/' . htmlspecialchars($followUp->followUp_id, ENT_QUOTES, 'UTF-8'); ?>">edit</a></td>
                 </tr>
             <?php } ?>
             </tbody>

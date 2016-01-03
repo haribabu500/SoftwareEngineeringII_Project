@@ -83,12 +83,12 @@
                                         <i class="fa fa-sticky-note fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
+                                        <div class="huge"><?php echo $count_feedbacks?></div>
                                         <div>Feedbacks!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="<?php echo URL; ?>followUp/viewFeedbacks">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Feedbacks</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

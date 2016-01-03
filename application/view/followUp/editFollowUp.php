@@ -1,7 +1,6 @@
 <script src="<?php echo URL; ?>js/jquery.js"></script>
 <script src="<?php echo URL; ?>js/validation/additional-methods.min.js"></script>
 <script src="<?php echo URL; ?>js/validation/jquery.validate.min.js"></script>
-<script src="<?php echo URL; ?>js/bootstrap-datepicker.js"></script>
 
 <div id="page-wrapper">
 	<div class="container-fluid">
@@ -13,8 +12,9 @@
 			<p><label>Qualification: &nbsp </label><?php echo $lead->qualification;?></p>
 			<p><label>Stream: &nbsp </label><?php echo $lead->stream;?></p>
 			
-			<form id="form_addFollowUp" class="form-horizontal" method="post" action="<?php echo URL; ?>followUp/addFollowUpAction">
+			<form id="form_addFollowUp" class="form-horizontal" method="post" action="<?php echo URL; ?>followUp/editFollowUpAction">
 				<input type="hidden" name="lead_id" value="<?php echo htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>" />
+				<input type="hidden" name="followUp_id" value="<?php echo htmlspecialchars($followUp->followUp_id, ENT_QUOTES, 'UTF-8'); ?>" />
 			  
 			  <div class="form-group">
 			    <label for="nextfollowupDate" class="col-sm-2 control-label">Next FollowUp date</label>
@@ -28,6 +28,7 @@
 			    <div class="col-sm-10">
 			    	<select id="status" name="status" class="form-control">
 							<option value="active" <?php if($lead->status == 'active') { ?> selected="selected"<? } ?>>Active</option>
+							<option value="expired" <?php if($lead->status == 'expired') { ?> selected="selected"<? } ?>>Expired</option>
 							<option value="dismissed" <?php if($lead->status == 'dismissed') { ?> selected="selected"<? } ?>>Dismissed</option>
 							<option value="postponed" <?php if($lead->status == 'postponed') { ?> selected="selected"<? } ?>>Postponed</option>
 					</select>
@@ -36,13 +37,13 @@
 			  <div class="form-group">
 			  	<label for="feedback" class="col-sm-2 control-label">Feedback</label>
 			  	<div class="col-sm-10">
-			  		<textarea name="feedback" class="form-control" rows="5"></textarea>
+			  		<textarea name="feedback" class="form-control" rows="5"><?php echo$followUp->feedback;?></textarea>
 			  	</div>
 			  </div>
 			  
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
-			      <button id="submit" name="submit_editLead" type="submit" class="btn btn-primary">Add Follow Up</button>
+			      <button id="submit" name="submit_editLead" type="submit" class="btn btn-primary">Update Follow Up</button>
 			    </div>
 			  </div>
 		</form>
@@ -60,7 +61,7 @@ $("#form_addLead").validate({
 		contact: {
 		      required: true,
 		      digits: true,
-		      maxlength:10,
+		      maxlength:10,	
 			  minlength:10
 		    },
 		password:{
@@ -72,8 +73,5 @@ $("#form_addLead").validate({
 			}
 	}
 });
-$('#nextfollowupDate').datepicker({
-	format: 'yyyy/mm/dd',
-	orientation: "auto"
-});
+
 </script>

@@ -31,6 +31,7 @@
     <link href="<?php echo URL; ?>font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	<script src="<?php echo URL; ?>js/jquery.js"></script>
+	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -66,9 +67,6 @@
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
@@ -101,6 +99,9 @@
                     </li>
                     <li>
                         <a href="<?php echo URL; ?>followUp/counsellorsFollowUp"><i class="fa fa-fw fa-phone"></i> Follow Ups</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo URL; ?>followUp/viewFeedbacks"><i class="fa fa-fw fa-sticky-note"></i> Feedbacks</a>
                     </li>
                 </ul>
             </div>

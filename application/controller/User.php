@@ -14,6 +14,8 @@ class User extends Controller
 		$myleads_count=sizeOf($myleads);
 		$total_leads=$this->model->getAllLeads();
 		$total_count=sizeOf($total_leads);
+		$feedbacks=$this->model->getFollowUp($_SESSION['user']->user_id);
+		$count_feedbacks=sizeOf($feedbacks);
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/user/counsellorsDashboard.php';
 		require APP . 'view/_templates/footer.php';

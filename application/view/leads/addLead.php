@@ -1,7 +1,7 @@
 <script src="<?php echo URL; ?>js/jquery.js"></script>
 <script src="<?php echo URL; ?>js/validation/additional-methods.min.js"></script>
 <script src="<?php echo URL; ?>js/validation/jquery.validate.min.js"></script>
-
+<script src="<?php echo URL; ?>js/bootstrap-datepicker.js"></script>
 <div id="page-wrapper">
 	<div id="addCounsellorForm" class="addCounsellorForm">
 		<form id="form_addLead" class="form-horizontal" method="post" action="<?php echo URL; ?>leads/addLeadAction">
@@ -63,13 +63,20 @@
 		  <div class="form-group">
 		    <label for="semester" class="col-sm-2 control-label">Semester</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="semester" name="semester" placeholder="Semester" required="required">
+		      <select id="semester" name="semester" class="form-control">
+						<option value="1" >Semester 1</option>
+						<option value="2" >Semester 2</option>
+						<option value="3" >Semester 3</option>
+						<option value="4" >Semester 4</option>
+						<option value="5" >Semester 5</option>
+						<option value="6" >Semester 6</option>
+				</select>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="nextfollowupDate" class="col-sm-2 control-label">Follow Up date</label>
 		    <div class="col-sm-10">
-		      <input type="date" class="form-control" id="nextfollowupDate" name="nextfollowupDate" placeholder="Follow Up date" required="required">
+		      <input type="text" class="form-control" id="nextfollowupDate" name="nextfollowupDate" placeholder="Follow Up date" required="required">
 		    </div>
 		  </div>
 		  
@@ -78,7 +85,7 @@
 		    <div class="col-sm-10">
 		    	<select id="status" name="status" class="form-control">
 						<option value="active">Active</option>
-						<option value="expired">Expired</option>
+<!-- 						<option value="expired">Expired</option> -->
 						<option value="dismissed">Dismissed</option>
 						<option value="postponed">Postponed</option>
 				</select>
@@ -109,8 +116,14 @@ $("#form_addLead").validate({
 		},
 		email:{
 			email:true
-			}
+			},
+		nextfollowupDate:{
+			date:true
+		}
 	}
 });
 
+$('#nextfollowupDate').datepicker({
+	format: 'yyyy/mm/dd'
+});
 </script>
