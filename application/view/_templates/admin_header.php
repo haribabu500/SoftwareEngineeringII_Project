@@ -2,6 +2,13 @@
 	if(!isset($_SESSION["user"])){
 		header('location: ' . URL . '');
 	}
+	if(isset($_SESSION["user"])){
+		$user=$_SESSION["user"];
+		if($user->role!="admin"){
+			header('location: ' . URL . 'user/counsellorsDashboard');
+		}
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,8 +34,10 @@
     <link href="<?php echo URL; ?>css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?php echo URL; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+ <link href="<?php echo URL; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo URL; ?>font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- jQuery -->
+    <script src="<?php echo URL; ?>js/jquery.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -93,22 +102,22 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-line-chart"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="<?php echo URL; ?>report/index">Counselors Report</a>
+                                <a href="<?php echo URL; ?>report/getCounsellorsFollowUp">Counselors Report</a>
                             </li>
                             <li>
                                 <a href="<?php echo URL; ?>report/index">Active Leads Report</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>report/index">Status Report</a>
+                                <a href="<?php echo URL; ?>report/getStatusWiseLeadsReport">Status Report</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>report/index">Date Wise Leads Report</a>
+                                <a href="<?php echo URL; ?>report/getDateWiseLeadsReport">Date Wise Leads Report</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>report/index">Semester Wise Leads Report</a>
+                                <a href="<?php echo URL; ?>report/getSemWiseLeadsReport">Semester Wise Leads Report</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>report/index">Counselor Wise Leads Report</a>
+                                <a href="<?php echo URL; ?>report/counsellorWiseLeadsReport">Counselor Wise Leads Report</a>
                             </li>
                         </ul>
                     </li>

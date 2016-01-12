@@ -22,6 +22,7 @@ class User extends Controller
 	}
 	
 	public function adminDashboard(){
+		$num_of_counsellors=$this->model->getAmountOfUsers();
 		require APP . 'view/_templates/admin_header.php';
 		require APP . 'view/user/adminDashboard.php';
 		require APP . 'view/_templates/admin_footer.php';
@@ -48,6 +49,16 @@ class User extends Controller
 		require APP . 'view/user/viewCounsellor.php';
 		require APP . 'view/_templates/admin_footer.php';
 		
+	}
+	public function counsellorWiseLead($counsellor_id){
+		$counsellor=$this->model->getUser($counsellor_id);
+		$leads=$this->model->getUsersLeads($counsellor_id);
+// 		print_r($user);
+// 		print_r($followUp);
+// 		die();
+		require APP . 'view/_templates/admin_header.php';
+		require APP . 'view/user/counsellorWiseFollowUp.php';
+		require APP . 'view/_templates/admin_footer.php';
 	}
 	
 	public function deleteCounsellor($user_id){

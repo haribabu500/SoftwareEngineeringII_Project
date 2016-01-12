@@ -313,4 +313,36 @@ class Model
     	return $query->fetchAll();
     }
     
+    public function getStatusWiseLeads(){
+    	
+    	$sql = "SELECT status,count(lead_id) as total FROM lead GROUP BY status";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
+    }
+    public function getWeeklyLead(){
+    	$sql = "SELECT `createdDate`, count(lead_id) as leads FROM `lead` where `createdDate`< CURRENT_DATE group by `createdDate` DESC limit 7";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
+    }
+    public function getMonthlyLead(){
+    	$sql = "SELECT monthname(`createdDate`) as month, count(lead_id) as leads FROM `lead` where `createdDate`< CURRENT_DATE group by monthname(`createdDate`) DESC";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
+    }
+    public function getSemWiseLead(){
+    	$sql = "select `semester`, count(lead_id) as leads from lead GROUP BY semester";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
+    }
+    public function getCounsellorsFollowUp(){
+    	$sql = "select concat(u.user_firstname,' ',u.user_middlename,' ',u.user_lastname) as  name, count(f.followUp_id) as followUp from followUp f, lead l, user u where l.lead_id=f.lead_id and u.user_id=l.user_id group by l.user_id";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
+    }
+    
 }
