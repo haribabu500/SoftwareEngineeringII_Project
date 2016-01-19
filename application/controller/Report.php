@@ -11,13 +11,22 @@ class Report extends Controller
 		
 	}
 	public function getDailyLead(){
-		 $list=$this->model->getDailyLead($_SESSION['user']->user_id);
+		 $list=$this->model->getDailyLead();
 		 $arr=array();
 		 foreach ($list as $object){
 		 	$arr[$object->createdDate]=$object->leads;
 		 }
 		 $arr=json_encode(array_reverse($arr));
 		 require APP . 'view/report/data.php';
+	}
+	public function getCounsellorsLead(){
+		$list=$this->model->getCounsellorsLead();
+		$arr=array();
+		foreach ($list as $object){
+			$arr[$object->name]=$object->leads;
+		}
+		$arr=json_encode(array_reverse($arr));
+		require APP . 'view/report/data.php';
 	}
 	
 	public function getStatusWiseLeadsReport(){
@@ -45,6 +54,12 @@ class Report extends Controller
 		// 		die();
 		require APP . 'view/_templates/admin_header.php';
 		require APP . 'view/report/counsellorsFollowUp.php';
+		require APP . 'view/_templates/admin_footer.php';
+	}
+	public function getActiveLeadsReport(){
+		$list=$this->model->getActiveLeads();
+		require APP . 'view/_templates/admin_header.php';
+		require APP . 'view/report/activeLeadsReport.php';
 		require APP . 'view/_templates/admin_footer.php';
 	}
 	public function getDateWiseLeadsReport(){

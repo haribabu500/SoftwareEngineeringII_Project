@@ -27,8 +27,8 @@
                     <td><?php if (isset($user->address)) echo htmlspecialchars($user->address, ENT_QUOTES, 'UTF-8'); ?></td>
                     <td><?php if (isset($user->username)) echo htmlspecialchars($user->username, ENT_QUOTES, 'UTF-8'); ?></td>
                     
-                    <td class="text-center"><a href="<?php echo URL . 'user/editCounsellor/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">edit</a>
-                    |<a href="<?php echo URL . 'user/deleteCounsellor/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">delete</a></td>
+                    <td class="text-center"><a href="<?php echo URL . 'user/editCounsellor/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>"><i class="fa fa-edit"></i></a>
+                    |<a href="<?php echo URL . 'user/deleteCounsellor/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>"><i class="fa fa-trash-o"></i></a></td>
                     
                 </tr>
             <?php } ?>

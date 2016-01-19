@@ -105,7 +105,7 @@
                                 <a href="<?php echo URL; ?>report/getCounsellorsFollowUp">Counselors Report</a>
                             </li>
                             <li>
-                                <a href="<?php echo URL; ?>report/index">Active Leads Report</a>
+                                <a href="<?php echo URL; ?>report/getActiveLeadsReport">Active Leads Report</a>
                             </li>
                             <li>
                                 <a href="<?php echo URL; ?>report/getStatusWiseLeadsReport">Status Report</a>

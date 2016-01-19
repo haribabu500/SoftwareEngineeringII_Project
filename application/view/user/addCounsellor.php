@@ -85,3 +85,4 @@ $("#form_addCounselor").validate({
 });
 
 </script>
+<script>$("button").click(function(){alert("added");});</script>

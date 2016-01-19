@@ -15,14 +15,14 @@ class Model
     }
 
     public function getAllLeads(){
-    	$sql = "SELECT * FROM lead";
+    	$sql = "SELECT * FROM lead where type='lead'";
     	$query = $this->db->prepare($sql);
     	$query->execute();
     	return $query->fetchAll();
     	
     }
     public function getUsersLeads($user_id){
-    	$sql = "SELECT * FROM lead where user_id=:user_id";
+    	$sql = "SELECT * FROM lead where user_id=:user_id and type='lead'";
     	$query = $this->db->prepare($sql);
     	$parameters=array('user_id'=>$user_id);
     	$query->execute($parameters);
@@ -30,7 +30,7 @@ class Model
     }
     
     public function getUsersFollowUpsLeads($user_id){
-    	$sql = "SELECT * FROM lead where user_id=:user_id and nextfollowupDate<=now() and status <> 'expired' order by nextfollowupDate";
+    	$sql = "SELECT * FROM lead where user_id=:user_id and nextfollowupDate<=now() and status <> 'expired' and type='lead' order by nextfollowupDate";
     	$query = $this->db->prepare($sql);
     	$parameters=array('user_id'=>$user_id);
     	$query->execute($parameters);
@@ -67,7 +67,7 @@ class Model
     }
     
     public function getLead($lead_id){
-    	$sql = "SELECT * FROM lead WHERE lead_id = :lead_id LIMIT 1";
+    	$sql = "SELECT * FROM lead WHERE lead_id = :lead_id and type='lead' LIMIT 1";
     	$query = $this->db->prepare($sql);
     	$parameters = array(':lead_id' => $lead_id);
     	$query->execute($parameters);
@@ -108,7 +108,7 @@ class Model
     }
     
     public function getAmountOfLeads(){
-    	$sql = "SELECT COUNT(lead_id) AS amount_of_leads FROM lead";
+    	$sql = "SELECT COUNT(lead_id) AS amount_of_leads FROM lead where type='lead'";
     	$query = $this->db->prepare($sql);
     	$query->execute();
     	// fetch() is the PDO method that get exactly one result
@@ -312,7 +312,22 @@ class Model
     	
     	return $query->fetchAll();
     }
+    public function getCounsellorsLead(){
+    	$sql="SELECT concat(u.user_firstname,' ',u.user_middlename,' ',u.user_lastname) as  name,count(l.lead_id) as leads FROM user u,lead l 
+		WHERE role='counsellor'
+		AND u.user_id=l.user_id
+		GROUP BY u.user_id ";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
+    }
     
+    public function getActiveLeads(){
+    	$sql = "SELECT COUNT(lead_id) as leads,status,semester FROM `lead` where status='active' GROUP BY semester";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	return $query->fetchAll();
+    }
     public function getStatusWiseLeads(){
     	
     	$sql = "SELECT status,count(lead_id) as total FROM lead GROUP BY status";

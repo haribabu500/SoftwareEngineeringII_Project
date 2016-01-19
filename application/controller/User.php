@@ -70,7 +70,7 @@ class User extends Controller
 	
 	public function editCounsellor($user_id){
 		if (isset($user_id)) {
-			$user = $this->model->getUser($user_id);
+			$user2 = $this->model->getUser($user_id);
 			require APP . 'view/_templates/admin_header.php';
 			require APP . 'view/user/editCounsellor.php';
 			require APP . 'view/_templates/admin_footer.php';

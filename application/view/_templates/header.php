@@ -2,6 +2,13 @@
 	if(!isset($_SESSION["user"])){
 		header('location: ' . URL . '');
 	}
+	
+	if(isset($_SESSION["user"])){
+		$user=$_SESSION["user"];
+		if($user->role=="admin"){
+			header('location: ' . URL . 'user/adminDashboard');
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
