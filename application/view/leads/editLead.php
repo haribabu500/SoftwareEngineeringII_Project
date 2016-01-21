@@ -73,12 +73,12 @@
 		    <label for="semester" class="col-sm-2 control-label">Semester</label>
 		    <div class="col-sm-10">
 		      <select id="semester" name="semester" class="form-control">
-						<option value="1" <?php if($lead->semester == '1') { ?> selected="selected"<? } ?>>Semester 1</option>
-						<option value="2" <?php if($lead->semester == '2') { ?> selected="selected"<? } ?>>Semester 2</option>
-						<option value="3" <?php if($lead->semester == '3') { ?> selected="selected"<? } ?>>Semester 3</option>
-						<option value="4" <?php if($lead->semester == '4') { ?> selected="selected"<? } ?>>Semester 4</option>
-						<option value="5" <?php if($lead->semester == '5') { ?> selected="selected"<? } ?>>Semester 5</option>
-						<option value="6" <?php if($lead->semester == '6') { ?> selected="selected"<? } ?>>Semester 6</option>
+						<option value="1" <?php if($lead->semester == '1') { ?> selected="selected"<?php } ?>>Semester 1</option>
+						<option value="2" <?php if($lead->semester == '2') { ?> selected="selected"<?php } ?>>Semester 2</option>
+						<option value="3" <?php if($lead->semester == '3') { ?> selected="selected"<?php } ?>>Semester 3</option>
+						<option value="4" <?php if($lead->semester == '4') { ?> selected="selected"<?php } ?>>Semester 4</option>
+						<option value="5" <?php if($lead->semester == '5') { ?> selected="selected"<?php } ?>>Semester 5</option>
+						<option value="6" <?php if($lead->semester == '6') { ?> selected="selected"<?php } ?>>Semester 6</option>
 				</select>
 		    </div>
 		  </div>
@@ -94,10 +94,10 @@
 		    <label for="status" class="col-sm-2 control-label">Status</label>
 		    <div class="col-sm-10">
 		    	<select id="status" name="status" class="form-control">
-						<option value="active" <?php if($lead->status == 'active') { ?> selected="selected"<? } ?>>Active</option>
-						<option value="expired" <?php if($lead->status == 'expired') { ?> selected="selected"<? } ?>>Expired</option>
-						<option value="dismissed" <?php if($lead->status == 'dismissed') { ?> selected="selected"<? } ?>>Dismissed</option>
-						<option value="postponed" <?php if($lead->status == 'postponed') { ?> selected="selected"<? } ?>>Postponed</option>
+						<option value="active" <?php if($lead->status == 'active') { ?> selected="selected"<?php } ?>>Active</option>
+						<option value="expired" <?php if($lead->status == 'expired') { ?> selected="selected"<?php } ?>>Expired</option>
+						<option value="dismissed" <?php if($lead->status == 'dismissed') { ?> selected="selected"<?php } ?>>Dismissed</option>
+						<option value="postponed" <?php if($lead->status == 'postponed') { ?> selected="selected"<?php } ?>>Postponed</option>
 				</select>
 		    </div>
 		  </div>

@@ -31,10 +31,10 @@
 			    <label for="status" class="col-sm-2 control-label">Status</label>
 			    <div class="col-sm-10">
 			    	<select id="status" name="status" class="form-control">
-							<option value="active" <?php if($lead->status == 'active') { ?> selected="selected"<? } ?>>Active</option>
-							<option value="expired" <?php if($lead->status == 'expired') { ?> selected="selected"<? } ?>>Expired</option>
-							<option value="dismissed" <?php if($lead->status == 'dismissed') { ?> selected="selected"<? } ?>>Dismissed</option>
-							<option value="postponed" <?php if($lead->status == 'postponed') { ?> selected="selected"<? } ?>>Postponed</option>
+							<option value="active" <?php if($lead->status == 'active') { ?> selected="selected"<?php } ?>>Active</option>
+							<option value="expired" <?php if($lead->status == 'expired') { ?> selected="selected"<?php } ?>>Expired</option>
+							<option value="dismissed" <?php if($lead->status == 'dismissed') { ?> selected="selected"<?php } ?>>Dismissed</option>
+							<option value="postponed" <?php if($lead->status == 'postponed') { ?> selected="selected"<?php } ?>>Postponed</option>
 					</select>
 			    </div>
 			  </div>
