@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>ALMS</title>
 	
 	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
