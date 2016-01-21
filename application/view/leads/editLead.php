@@ -1,3 +1,7 @@
+<?php if(isset($added)){echo "<script>
+		alert('".$added."');
+		location.href='".URL . "leads/viewCounsellorsLeads'
+	</script>";}?>
 <script src="<?php echo URL; ?>js/jquery.js"></script>
 <script src="<?php echo URL; ?>js/validation/additional-methods.min.js"></script>
 <script src="<?php echo URL; ?>js/validation/jquery.validate.min.js"></script>
@@ -7,7 +11,7 @@
 	<div id="addCounsellorForm" class="addCounsellorForm">
 		
 		<form id="form_addLead" class="form-horizontal" method="post" action="<?php echo URL; ?>leads/editLeadAction">
-			<legend>Add Lead page</legend>
+			<legend>Edit Lead page</legend>
 			<input type="hidden" name="lead_id" value="<?php echo htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>" />
 			<input type="hidden" name="user_id" value="<?php echo htmlspecialchars($lead->user_id, ENT_QUOTES, 'UTF-8'); ?>" />
 			

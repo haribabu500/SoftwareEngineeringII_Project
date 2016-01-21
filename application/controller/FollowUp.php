@@ -26,7 +26,11 @@ class FollowUp extends Controller
 		}
 		$this->model->addFolllowUp($user_id,$lead_id,$nextfollowupDate,$status,$feedback);
 		
-		header('location: ' . URL . 'followUp/counsellorsFollowUp');
+// 		header('location: ' . URL . 'followUp/counsellorsFollowUp');
+		$added="FollowUp Added";
+		require APP . 'view/_templates/header.php';
+		require APP . 'view/followUp/addFollowUp.php';
+		require APP . 'view/_templates/footer.php';
 	}
 	
 	public function counsellorsFollowUp(){
@@ -63,7 +67,11 @@ class FollowUp extends Controller
 		$this->model->updateFollowUp($followUp_id,$user_id,$lead_id,$nextfollowupDate,$status,$feedback);
 // 		$this->model->addFolllowUp($user_id,$lead_id,$nextfollowupDate,$status,$feedback);
 		
-		header('location: ' . URL . 'followUp/viewFeedbacks');
+// 		header('location: ' . URL . 'followUp/viewFeedbacks');
+		$added="FollowUp Updated";
+		require APP . 'view/_templates/header.php';
+		require APP . 'view/followUp/editFollowUp.php';
+		require APP . 'view/_templates/footer.php';
 	}
 }
 ?>

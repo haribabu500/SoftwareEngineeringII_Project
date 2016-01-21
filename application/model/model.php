@@ -67,7 +67,7 @@ class Model
     }
     
     public function getLead($lead_id){
-    	$sql = "SELECT * FROM lead WHERE lead_id = :lead_id and type='lead' LIMIT 1";
+    	$sql = "SELECT * FROM lead WHERE lead_id = :lead_id LIMIT 1";
     	$query = $this->db->prepare($sql);
     	$parameters = array(':lead_id' => $lead_id);
     	$query->execute($parameters);
@@ -113,6 +113,12 @@ class Model
     	$query->execute();
     	// fetch() is the PDO method that get exactly one result
     	return $query->fetch()->amount_of_leads;
+    }
+    public function transferLead($lead_id){
+    	$sql = "UPDATE lead SET TYPE='student' where lead_id=:lead_id";
+    	$query = $this->db->prepare($sql);
+    	$parameters = array(':lead_id' => $lead_id);
+    	$query->execute($parameters);
     }
 //     ---------------------------------------------------------------
     public function getAllUser(){
@@ -284,8 +290,11 @@ class Model
     	$query->execute($parameters);
     }
     //     ---------------------------------------------------------------
-    public function getAllStudentss(){
-    
+	public function getAllStudents(){
+		$sql = "SELECT * FROM lead where type='student'";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+		return $query->fetchAll();
     }
     public function addStudent(){
     

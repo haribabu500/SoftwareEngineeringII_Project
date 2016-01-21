@@ -97,3 +97,6 @@ body {
 .lead-postponed{
 	color:#3c763d;
 }
+.link{
+	cursor: pointer;
+}

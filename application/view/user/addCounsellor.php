@@ -1,3 +1,8 @@
+<?php if(isset($added)){echo "<script>
+		alert('".$added."');
+		location.href='".URL . "user/addCounsellor'
+	</script>";}?>
+
 <div id="page-wrapper">
 	<div id="addCounsellorForm" class="addCounsellorForm">
 		<form id="form_addCounselor" class="form-horizontal" method="post" action="<?php echo URL; ?>user/addCounsellorAction">
@@ -85,4 +90,3 @@ $("#form_addCounselor").validate({
 });
 
 </script>
-<script>$("button").click(function(){alert("added");});</script>

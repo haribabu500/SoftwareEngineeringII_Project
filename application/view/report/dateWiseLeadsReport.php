@@ -4,8 +4,8 @@
 			<div class="choose">
 				<select id="select">
 					<option id="week">This Week</option>
-					<option id="month">This Month</option>
-					<option id="custom">Custom date</option>
+					<option id="month">Monthly</option>
+<!-- 					<option id="custom">Custom date</option> -->
 				</select>
 			</div>
 		</div>

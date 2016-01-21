@@ -1,3 +1,7 @@
+<?php if(isset($added)){echo "<script>
+		alert('".$added."');
+		location.href='".URL . "followUp/viewFeedbacks'
+	</script>";}?>
 <script src="<?php echo URL; ?>js/jquery.js"></script>
 <script src="<?php echo URL; ?>js/validation/additional-methods.min.js"></script>
 <script src="<?php echo URL; ?>js/validation/jquery.validate.min.js"></script>

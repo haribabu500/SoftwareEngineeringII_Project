@@ -70,13 +70,13 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]->user_firstname." ".$_SESSION["user"]->user_middlename.$_SESSION["user"]->user_lastname?><b class="caret"></b></a>
                     <ul class="dropdown-menu" style="min-width:180px;">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
+<!--                         <li> -->
+<!--                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <a href="#"><i class="fa fa-fw fa-gear"></i> Change Password</a> -->
+<!--                         </li> -->
+<!--                         <li class="divider"></li> -->
                         <li>
                             <a href="<?php echo URL; ?>login/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
@@ -109,6 +109,9 @@
                     </li>
                     <li>
                         <a href="<?php echo URL; ?>followUp/viewFeedbacks"><i class="fa fa-fw fa-sticky-note"></i> Feedbacks</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo URL; ?>student/viewStudents"><i class="fa fa-fw fa-graduation-cap"></i> Students</a>
                     </li>
                 </ul>
             </div>

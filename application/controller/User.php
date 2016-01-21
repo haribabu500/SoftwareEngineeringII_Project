@@ -38,7 +38,11 @@ class User extends Controller
 		if (isset($_POST["submit_addCounsellor"])) {
 			$this->model->addUser($_POST["user_firstname"], $_POST["user_middlename"], $_POST["user_lastname"],$_POST["email"],$_POST["contact"],$_POST["address"],"counsellor",$_POST["username"],$_POST["password"] );
 		}
-		header('location: ' . URL . 'user/addCounsellor');
+		$added="Counsellor Added";
+// 		header('location: ' . URL . 'user/addCounsellor');
+		require APP . 'view/_templates/admin_header.php';
+		require APP . 'view/user/addCounsellor.php';
+		require APP . 'view/_templates/admin_footer.php';
 	}
 	
 	public function viewCounsellors(){
@@ -65,7 +69,14 @@ class User extends Controller
 		if (isset($user_id)) {
 			$this->model->deleteUser($user_id);
 		}
-		header('location: ' . URL . 'user/viewCounsellors');
+		$added="Counsellor Removed";
+		$users = $this->model->getAllUser();
+		$num_of_counsellors=$this->model->getAmountOfUsers();
+		
+		require APP . 'view/_templates/admin_header.php';
+		require APP . 'view/user/viewCounsellor.php';
+		require APP . 'view/_templates/admin_footer.php';
+// 		header('location: ' . URL . 'user/viewCounsellors');
 	}
 	
 	public function editCounsellor($user_id){
@@ -83,7 +94,12 @@ class User extends Controller
 		if (isset($_POST["submit_addCounsellor"])) {
 			$this->model->updateUser($_POST["user_id"],$_POST["user_firstname"], $_POST["user_middlename"], $_POST["user_lastname"],$_POST["email"],$_POST["contact"],$_POST["address"],$_POST["role"],$_POST["username"],$_POST["password"] );
 		}
-		header('location: ' . URL . 'user/viewCounsellors');
+		$added="Counsellor Updated";
+// 		header('location: ' . URL . 'user/viewCounsellors');
+
+		require APP . 'view/_templates/admin_header.php';
+		require APP . 'view/user/editCounsellor.php';
+		require APP . 'view/_templates/admin_footer.php';
 	}
 }
 ?>
