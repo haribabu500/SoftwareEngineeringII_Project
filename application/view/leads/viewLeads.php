@@ -42,7 +42,7 @@
                     <td><?php if (isset($lead->semester)) echo htmlspecialchars($lead->semester, ENT_QUOTES, 'UTF-8'); ?></td>
                     <td><?php if (isset($lead->nextfollowupDate)) echo htmlspecialchars($lead->nextfollowupDate, ENT_QUOTES, 'UTF-8'); ?></td>
                     <td class="lead-<?php echo $lead->status;?>"><?php if (isset($lead->status)) echo htmlspecialchars($lead->status, ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><a href="<?php echo URL . 'leads/transferLead/' . htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>"><i class="fa fa-arrows-h"></a></td>
+                    <td><a title="Transfer" href="<?php echo URL . 'leads/transferLead/' . htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>"><i class="fa fa-arrows-h"></a></td>
                     <td><a href="<?php echo URL . 'leads/editLead/' . htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>"><i class="fa fa-edit"></a></td>
                 </tr>
             <?php } ?>

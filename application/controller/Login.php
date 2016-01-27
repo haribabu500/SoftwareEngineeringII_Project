@@ -12,21 +12,32 @@ class Login extends Controller
 	public function checkLogin(){
 		$username=$_POST['username'];
 		$password=$_POST['password'];
-		$user=$this->model->getLoggedInUser($username,$password);
+		$user=$this->model->getLoggedInUser($username);
+		echo password_hash($password, PASSWORD_DEFAULT);
+		echo "---------------";
+		if(password_verify($password, $user->password)){
+			echo "true";
+// 		}
+// 		else
+// 		{
+// 			echo "false";
+// 		}
+// 		die();
 // 		echo $user->role;
-		if($user->role=="admin"){
-			$_SESSION["user"]=$user;
-			header('location: '.URL.'user/adminDashboard');
-			require APP . 'view/_templates/admin_header.php';
-			require APP . 'view/user/adminDashboard.php';
-			require APP . 'view/_templates/admin_footer.php';
-		}
-		if($user->role=="counsellor"){
-			$_SESSION["user"]=$user;
-			header('location: '.URL.'user/counsellorsDashboard');
-		}
-		else{
-			header('location: ' . URL . '');
+			if($user->role=="admin"){
+				$_SESSION["user"]=$user;
+				header('location: '.URL.'user/adminDashboard');
+				require APP . 'view/_templates/admin_header.php';
+				require APP . 'view/user/adminDashboard.php';
+				require APP . 'view/_templates/admin_footer.php';
+			}
+			if($user->role=="counsellor"){
+				$_SESSION["user"]=$user;
+				header('location: '.URL.'user/counsellorsDashboard');
+			}
+			else{
+				header('location: ' . URL . '');
+			}
 		}
 	}
 // 	this method loggs out a  user and redirects user to login page

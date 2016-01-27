@@ -140,7 +140,7 @@ class Model
     			':address' => $address,
     			':role' => $role,
     			':username' => $username,
-    			':password' => $password);
+    			':password' => password_hash($password, PASSWORD_DEFAULT));
     	$query->execute($parameters);
     	
     }
@@ -178,7 +178,7 @@ class Model
     			 ':address' => $address,
     			 ':role' => $role,
     			 ':username' => $username,
-    			 ':password' => $password,
+    			 ':password' => password_hash($password, PASSWORD_DEFAULT),
     			 ':user_id' => $user_id);
     	$query->execute($parameters);
     }
@@ -190,11 +190,13 @@ class Model
     	return $query->fetch()->amount_of_users;
     }
     
-    public function getLoggedInUser($username,$password){
-    	$sql = "SELECT * FROM user WHERE username = :username and password=:password";
+    public function getLoggedInUser($username){
+    	$sql = "SELECT * FROM user WHERE username = :username";
     	$query = $this->db->prepare($sql);
-    	$parameters = array(':username' => $username,':password'=>$password);
+    	$parameters = array(':username' => $username);
     	$query->execute($parameters);
+//     	print_r(password_hash($password, PASSWORD_DEFAULT));
+//     	die();
     	return $query->fetch();
     }
     //     ---------------------------------------------------------------
